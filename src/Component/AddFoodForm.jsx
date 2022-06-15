@@ -1,5 +1,5 @@
 import { Divider, Input } from 'antd';
-import { useImperativeHandle, useState } from 'react';
+import { useState } from 'react';
 import useId from 'react-use-uuid';
 
 
@@ -7,7 +7,7 @@ import useId from 'react-use-uuid';
 // Iteration 4
 
 
-function AddFoodForm({addNewFood}) {
+function AddFoodForm({addNewFood, hide}) {
     const id = useId()
     const [name, setName] = useState(" ")
     const [image, setimage] = useState(" ")
@@ -44,26 +44,30 @@ function AddFoodForm({addNewFood}) {
         setServings(1)
         console.log({newFood})
     }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <Divider>Add Food Entry</Divider>
-
-      <label>Name</label>
-      <Input name="name" value={name} type="text" onChange={(event) => {handleChange(event)}} />
-
-      <label>Image</label>
-      <Input name="image" value={image} type="text" onChange={(event) => {handleChange(event)}} />
-
-      <label>Calories</label>
-      <Input name="calories" value={calories} type="number" onChange={(event) => {handleChange(event)}} />
-
-      <label>Servings</label>
-      <Input name="servings" value={servings} type="number" onChange={(event) => {handleChange(event)}} />
-
-      <button type="submit">Create</button>
-    </form>
-  );
+    if(hide){
+        return <div></div>
+    }else{
+        return (
+            <form onSubmit={handleSubmit}>
+              <Divider>Add Food Entry</Divider>
+        
+              <label>Name</label>
+              <Input name="name" value={name} type="text" onChange={(event) => {handleChange(event)}} />
+        
+              <label>Image</label>
+              <Input name="image" value={image} type="text" onChange={(event) => {handleChange(event)}} />
+        
+              <label>Calories</label>
+              <Input name="calories" value={calories} type="number" onChange={(event) => {handleChange(event)}} />
+        
+              <label>Servings</label>
+              <Input name="servings" value={servings} type="number" onChange={(event) => {handleChange(event)}} />
+        
+              <button type="submit">Create</button>
+            </form>
+          );
+    }
+  
 }
 
 export default AddFoodForm;

@@ -20,6 +20,7 @@ function App() {
   //console.log(newArray)
   const [foods, setFoods] = useState(newArray)
   const [search, setSearch] = useState("")
+  const [hide, setHide] = useState(true)
 
   function handleNewFood(newFood){
     const updatedFoods = JSON.parse(JSON.stringify(foods))
@@ -33,8 +34,10 @@ function App() {
 
   return (
     <div className="App">
-      <AddFoodForm addNewFood={handleNewFood} />
-      <Button> Hide Form / Add New Food </Button>
+      <AddFoodForm addNewFood={handleNewFood} hide={hide}/>
+      <Button onClick={()=>{setHide(!hide)}}> 
+      {hide ? <span>Add New Food</span> : <span> Hide Form</span>} 
+      </Button>
 
       <SearchBar search={search} setSearch={setSearch} />
       <Divider>Food List</Divider>
