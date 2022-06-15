@@ -27,6 +27,9 @@ function App() {
     setFoods(updatedFoods)
   }
   
+  function deleteFood(id){
+    setFoods(foods.filter(food => food.id !== id))
+  }
 
   return (
     <div className="App">
@@ -46,7 +49,7 @@ function App() {
         .map((food)=>{
           return (
             <Col key={food.id}>
-              <FoodBox food={food} />
+              <FoodBox food={food} deleteFood={deleteFood} />
             </Col>
           )           
         })}        
