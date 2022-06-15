@@ -43,19 +43,23 @@ function App() {
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>        
-        {foods
+        {foods.length > 0 ?
+        foods
         .filter((food)=>{
           return(
             food.name.toLowerCase().includes(search.toLowerCase())
-          )
-        })
+          )})
         .map((food)=>{
           return (
             <Col key={food.id}>
               <FoodBox food={food} deleteFood={deleteFood} />
             </Col>
-          )           
-        })}        
+          )})
+          : <div>
+            <p>Oops! There is no more content to show 0_0</p>
+            <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVmFKB7UIlWFUWwFUgaOwi5FSLIvoK1RXonw&usqp=CAU" alt="Nothing to show" ></img></div>
+            </div>
+        }        
       </Row>      
     </div>
   )    
